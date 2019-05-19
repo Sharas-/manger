@@ -1,0 +1,6 @@
+version: '3'
+services:
+    db: # mongodb server
+        image: mvertes/alpine-mongo 
+        ports:
+            - 9393:27017

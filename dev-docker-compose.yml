@@ -1,0 +1,17 @@
+version: '3'
+services:
+  db:
+     container_name: flyerdb
+     image: mvertes/alpine-mongo 
+  app:
+    build: .
+    environment:
+        - DB_CONNECTION=mongodb://flyerdb:27017
+    volumes: 
+        - ./code:/srv:rw
+    ports:
+        - 80:8000
+    command: ["--reload", "--access-logfile=-"]
+    depends_on:
+        - "db"
+
