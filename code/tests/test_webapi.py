@@ -9,7 +9,7 @@ FLYERS_URL = HOST_URL + 'flyers'
 TODAYS_URL = HOST_URL + 'todays_menus'
 
 def format_url_query(params: dict, url=FLYERS_URL) -> str:
-    return FLYERS_URL + '?' + urllib.parse.urlencode(params)
+    return url + '?' + urllib.parse.urlencode(params)
 
 def setup_module():
     import time

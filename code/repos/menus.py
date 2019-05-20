@@ -9,7 +9,7 @@ class MenuItem(dict):
     """
     def __init__(self, _id: str, restaurant_name: str, date: str, menu: str):
         vals = (val.strip() for val in [_id, restaurant_name, date, menu])
-        if '' in vals:
+        if not all(vals):
             raise ValueError("Cannot create menu item with empty value(s)")
         self._id = _id
         self.restaurant_name = restaurant_name
