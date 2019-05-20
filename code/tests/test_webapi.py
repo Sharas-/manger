@@ -13,11 +13,11 @@ def format_url_query(params: dict, url=FLYERS_URL) -> str:
 
 def setup_module():
     import time
-    subprocess.run(['docker-compose', 'up', '--detach', '--build'], check=True)
+    subprocess.check_call(['docker-compose', 'up', '--detach', '--build'])
     time.sleep(1) # give time for web server in the container to start
 
 def teardown_function():
-    subprocess.run(['docker-compose', 'restart', 'db'], check=True)
+    subprocess.check_call(['docker-compose', 'restart', 'db'])
 
 def test_can_list_flyers_without_authentication():
     r = requests.get(FLYERS_URL)
@@ -80,4 +80,4 @@ def test_todays_menus_finds_all_todays_menus():
     assert all(menu['date'] == today for menu in query_result)
 
 def teardown_module():
-    subprocess.run(['docker-compose', 'down'])
+    subprocess.check_call(['docker-compose', 'down'])
